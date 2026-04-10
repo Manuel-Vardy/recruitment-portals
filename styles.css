@@ -118,11 +118,10 @@ body {
 
 header#home {
     min-height: 86vh;
-    background-color: #0b132b; /* Dark fallback to prevent white flash before image/overlay load */
-}
-
-header#home img {
-    will-change: transform, opacity;
+    background-image: url('image/group-african-kids-paying-attention-class.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
 }
 
 header#home .container {
