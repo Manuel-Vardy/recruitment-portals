@@ -54,4 +54,112 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.remove('scrolled');
         }
     });
+
+    // Deprived Districts Logic
+    const deprivedData = {
+        "AHAFO": {
+            display: "Ahafo",
+            districts: ["ASUNAFO SOUTH", "ASUTIFI SOUTH", "ASUTIFI NORTH", "ASUNAFO NORTH", "TANO SOUTH", "TANO NORTH"]
+        },
+        "BONO": {
+            display: "Bono",
+            districts: ["Tain District", "Banda District", "Dormaa West District", "Brekum West District", "Jaman North District"]
+        },
+        "ASHANTI": {
+            display: "Ashanti",
+            districts: ["ADANSI SOUTH", "ADANSI ASOKWA", "ADANSI NORTH", "AFIGYA KWABRE", "AFIGYA KWABRE NORTH", "AHAFO ANO NORTH", "AHAFO ANO SOUTH EAST", "AHAFO ANO SOUTH WEST", "AKROFUOM", "AMANSIE CENTRAL", "AMANSIE SOUTH", "AMANSIE WEST", "ASANTE AKIM NORTH", "ASANTE AKIM SOUTH", "ATWIMA MPONUA", "ATWIMA NWABIAGYA NORTH", "BEKWAI MUNICIPAL", "BOSOME FREHO", "BOSOMTWE", "EJURA-SEKYEDUMASE", "OFFINSO NORTH", "SEKYERE AFRAM PLAINS", "SEKYERE CENTRAL", "SEKYERE KUMAWU", "JUABEN MUNICIPAL"]
+        },
+        "SAVANNAH": {
+            display: "Savannah",
+            districts: ["Bole", "Central Gonja", "East Gonja", "North East Gonja", "North Gonja", "Sawla-Tuna-Kalba", "West Gonja"]
+        },
+        "NORTHERN": {
+            display: "Northern",
+            districts: ["GUSHEGU", "KARAGA", "KPANDAI", "KUMBUNGU", "MION", "NANTON", "NANUMBA NORTH", "NANUMBA SOUTH", "SABOBA", "SAVELUGU", "TATALE", "TOLON", "YENDI", "ZABZUGU"]
+        },
+        "EASTERN": {
+            display: "Eastern",
+            districts: ["KWAHU AFRAM PLAINS SOUTH", "KWAHU AFRAM PLAINS NORTH", "UPPER MANYA KROBO", "AYENSUANO", "FANTEAKWA NORTH", "ACHIASE", "AKYEMANSA"]
+        },
+        "GREATER ACCRA": {
+            display: "Greater Accra",
+            districts: ["ADA EAST", "ADA WEST", "NINGO PRAMPRAM", "SHAI OSUDOKU", "GA SOUTH", "GA WEST"]
+        },
+        "UPPER WEST": {
+            display: "Upper West",
+            districts: ["WA EAST", "WA WEST", "NADOWLI KALEO", "DAFFIAMA-BUSSIE-ISSA", "LAMBUSSIE", "NANDOM MUNICIPAL", "LAWRA MUNICIPAL", "JIRAPA MUNICIPAL", "SISSALA EAST MUNICIPAL", "SISSALA WEST"]
+        },
+        "UPPER EAST": {
+            display: "Upper East",
+            districts: ["PUSIGA DISTRICT", "BINDURI DISTRICT", "BAWKU MUNICIPALITY", "BUILSA SOUTH DISTRICT", "TALENSI DISTRICT", "GARU DISTRICT", "BONGO DISTRICT", "TEMPANE DISTRICT", "KASSENA- NANKANA WEST DISTRICT", "BAWKU WEST DISTRICT", "BUILSA NORTH MUNICIPALITY", "NABDAM DISTRICT", "BOLGATANGA EAST DISTRICT", "KASSENA- NANKANA MUNICIPALITY"]
+        },
+        "OTI": {
+            display: "Oti",
+            districts: ["BIAKOYE", "GUAN", "JASIKAN", "KADJEBI", "KRACHI EAST", "KRACHI NCHUMURU", "KRACHI WEST", "NKWANTA NORTH", "NKWANTA SOUTH"]
+        },
+        "VOLTA": {
+            display: "Volta",
+            districts: ["ADAKLU", "AFADZATO SOUTH", "CENTRAL TONGU", "HO WEST", "SOUTH DAYI", "ANLOGA", "AGOTIME-ZIOPE", "NORTH DAYI", "NORTH TONGU", "KETU NORTH"]
+        },
+        "NORTH EAST": {
+            display: "North East",
+            districts: ["West Mamprusi", "East Mamprusi", "Bunkpurugu Nyanpanduri", "Mamprugu Moaduri", "Yunyoo-Nasuan", "Chereponi"]
+        },
+        "CENTRAL": {
+            display: "Central",
+            districts: ["Upper Denkyira West", "Abura Asebu Kwamankese", "Asikuma Odoben Brakwa", "Twifo Hemang Lower Denkyira", "Upper Denkyira East", "Assin South", "Assin North", "Ekumfi", "Twifo Atti-Morkwa", "Ajumako Enyan Essiam", "Agona East", "Awutu Senya", "Gomoa West", "Gomoa Central"]
+        },
+        "WESTERN": {
+            display: "Western",
+            districts: ["WASA AMENFI EAST", "WASA AMENFI WEST", "WASA AMENFI CENTRAL", "WASSA WEST", "PRESTEA HUNI-VALLEY", "JOMORO", "NZEMA EAST", "ELLEMBELLE", "MPOHOR-FIASE"]
+        },
+        "WESTERN NORTH": {
+            display: "Western North",
+            districts: ["AOWIN", "BIA EAST", "BIA WEST", "BIBIANI-ANHWIASO-BEKWAI", "BODI", "JUABOSO", "SEFWI AKONTOMBRA", "SEFWI WIAWSO", "SUAMAN"]
+        },
+        "BONO EAST": {
+            display: "Bono East",
+            districts: ["TECHIMAN NORTH", "KINTAMPO SOUTH", "NKORANZA NORTH", "PRU EAST", "PRU WEST", "SENE EAST", "SENE WEST"]
+        }
+    };
+
+    const regionSelect = document.getElementById('regionSelect');
+    const districtsDisplay = document.getElementById('districtsDisplay');
+    const districtsList = document.getElementById('districtsList');
+    const selectedRegionName = document.getElementById('selectedRegionName');
+
+    if (regionSelect) {
+        // Populate select options
+        Object.keys(deprivedData).forEach(key => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = deprivedData[key].display;
+            regionSelect.appendChild(option);
+        });
+
+        regionSelect.addEventListener('change', (e) => {
+            const regionKey = e.target.value;
+            const data = deprivedData[regionKey];
+
+            if (data) {
+                // Update text
+                selectedRegionName.textContent = data.display + " Region Districts";
+
+                // Clear and populate list with simple layout
+                districtsList.innerHTML = data.districts.map((district, index) => `
+                    <li class="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0">
+                        <svg class="flex-shrink-0 w-4 h-4 text-green-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-700 font-medium">${district}</span>
+                    </li>
+                `).join('');
+
+                // Show
+                districtsDisplay.classList.remove('hidden');
+                districtsDisplay.style.opacity = '1';
+                districtsDisplay.style.transform = 'none';
+            }
+        });
+    }
 });
