@@ -597,7 +597,7 @@
                                 </div>
 
                                 <!-- Explore Deprived Districts (Right Side - Ash Background) -->
-                                <div id="deprived-districts-tool" class="bg-ash px-8 py-12 md:p-16 lg:p-20">
+                                <div id="deprived-districts-tool" class="deprived-districts-tool bg-ash px-8 py-12 md:p-16 lg:p-20">
                                     <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4">Explore Deprived Districts</h3>
                                     <p class="text-gray-600 mb-8 font-medium">
                                         Select a region to view the priority deprived districts list.
@@ -605,7 +605,7 @@
 
                                     <div class="space-y-6">
                                         <div class="relative">
-                                            <select id="regionSelect" class="w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all text-primary font-bold appearance-none cursor-pointer">
+                                            <select class="region-select w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all text-primary font-bold appearance-none cursor-pointer">
                                                 <option value="" disabled selected>CHOOSE A REGION</option>
                                                 <!-- Options will be populated by JS -->
                                             </select>
@@ -616,10 +616,10 @@
                                             </div>
                                         </div>
 
-                                        <div id="districtsDisplay" class="hidden">
+                                        <div class="districts-display hidden">
                                             <div class="mt-6">
-                                                <h4 id="selectedRegionName" class="text-lg font-bold text-primary uppercase tracking-wide mb-4">Region Name</h4>
-                                                <ul id="districtsList" class="space-y-2 text-gray-700 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                                                <h4 class="selected-region-name text-lg font-bold text-primary uppercase tracking-wide mb-4">Region Name</h4>
+                                                <ul class="districts-list space-y-2 text-gray-700 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                                                     <!-- Districts populated by JS -->
                                                 </ul>
                                             </div>
@@ -1001,34 +1001,35 @@
                                     </ul>
                                 </div>
 
-                                <!-- Talk to Expert (Right Side - Ash Background) -->
-                                <div id="talk-to-expert" class="bg-ash px-8 py-12 md:p-16 lg:p-20">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4">Talk To An Expert</h3>
-                                    <p class="text-gray-600 mb-6 font-medium">
-                                        Complete the form to speak with a product specialist or to set up a personalized call meeting with our expert.
-                                    </p>
-                                    <p class="text-xl font-bold text-primary mb-2">
-                                        Call Us: <a href="tel:+233202295858" class="hover:text-red-500 transition-colors">+233 (0) 20 229 5858</a>
-                                    </p>
-                                    <p class="text-xl font-bold text-primary mb-8">
-                                        Email: <a href="mailto:info@moegedp.com" class="hover:text-red-500 transition-colors">info@moegedp.com</a>
+                                <!-- Explore Deprived Districts (Right Side - Ash Background) -->
+                                <div class="deprived-districts-tool bg-ash px-8 py-12 md:p-16 lg:p-20">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4">Explore Deprived Districts</h3>
+                                    <p class="text-gray-600 mb-8 font-medium">
+                                        Select a region to view the priority deprived districts list.
                                     </p>
 
-                                    <form class="space-y-4">
-                                        <input type="text" placeholder="Full Name"
-                                            class="w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium text-gray-800">
-                                        <input type="email" placeholder="Email Address"
-                                            class="w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium text-gray-800">
-                                        <textarea rows="4" placeholder="Your Message"
-                                            class="w-full bg-white border border-gray-300 px-6 py-5 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium resize-none text-gray-800"></textarea>
-                                        <button type="submit"
-                                            class="w-full bg-primary hover:bg-black text-white py-4 font-bold shadow-lg transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center gap-2">
-                                            <span>Send Message</span>
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    <div class="space-y-6">
+                                        <div class="relative">
+                                            <select class="region-select w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all text-primary font-bold appearance-none cursor-pointer">
+                                                <option value="" disabled selected>CHOOSE A REGION</option>
+                                                <!-- Options will be populated by JS -->
+                                            </select>
+                                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <div class="districts-display hidden">
+                                            <div class="mt-6">
+                                                <h4 class="selected-region-name text-lg font-bold text-primary uppercase tracking-wide mb-4">Region Name</h4>
+                                                <ul class="districts-list space-y-2 text-gray-700 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                                                    <!-- Districts populated by JS -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1457,34 +1458,35 @@
                                     </ul>
                                 </div>
 
-                                <!-- Talk to Expert (Right Side - Ash Background) -->
-                                <div id="talk-to-expert" class="bg-ash px-8 py-12 md:p-16 lg:p-20">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4">Talk To An Expert</h3>
-                                    <p class="text-gray-600 mb-6 font-medium">
-                                        Complete the form to speak with a product specialist or to set up a personalized call meeting with our expert.
-                                    </p>
-                                    <p class="text-xl font-bold text-primary mb-2">
-                                        Call Us: <a href="tel:+233202295858" class="hover:text-red-500 transition-colors">+233 (0) 20 229 5858</a>
-                                    </p>
-                                    <p class="text-xl font-bold text-primary mb-8">
-                                        Email: <a href="mailto:info@moegedp.com" class="hover:text-red-500 transition-colors">info@moegedp.com</a>
+                                <!-- Explore Deprived Districts (Right Side - Ash Background) -->
+                                <div class="deprived-districts-tool bg-ash px-8 py-12 md:p-16 lg:p-20">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4">Explore Deprived Districts</h3>
+                                    <p class="text-gray-600 mb-8 font-medium">
+                                        Select a region to view the priority deprived districts list.
                                     </p>
 
-                                    <form class="space-y-4">
-                                        <input type="text" placeholder="Full Name"
-                                            class="w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium text-gray-800">
-                                        <input type="email" placeholder="Email Address"
-                                            class="w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium text-gray-800">
-                                        <textarea rows="4" placeholder="Your Message"
-                                            class="w-full bg-white border border-gray-300 px-6 py-5 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium resize-none text-gray-800"></textarea>
-                                        <button type="submit"
-                                            class="w-full bg-primary hover:bg-black text-white py-4 font-bold shadow-lg transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center gap-2">
-                                            <span>Send Message</span>
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    <div class="space-y-6">
+                                        <div class="relative">
+                                            <select class="region-select w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all text-primary font-bold appearance-none cursor-pointer">
+                                                <option value="" disabled selected>CHOOSE A REGION</option>
+                                                <!-- Options will be populated by JS -->
+                                            </select>
+                                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <div class="districts-display hidden">
+                                            <div class="mt-6">
+                                                <h4 class="selected-region-name text-lg font-bold text-primary uppercase tracking-wide mb-4">Region Name</h4>
+                                                <ul class="districts-list space-y-2 text-gray-700 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                                                    <!-- Districts populated by JS -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1906,34 +1908,35 @@
                                     </ul>
                                 </div>
 
-                                <!-- Talk to Expert (Right Side - Ash Background) -->
-                                <div class="bg-ash px-8 py-12 md:p-16 lg:p-20">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4 uppercase">Talk To An Expert</h3>
-                                    <p class="text-gray-600 mb-6 font-medium">
-                                        Complete the form to speak with a product specialist or to set up a personalized call meeting with our expert.
-                                    </p>
-                                    <p class="text-xl font-bold text-primary mb-2">
-                                        Call Us: <a href="tel:+233202295858" class="hover:text-red-500 transition-colors tracking-tight">+233 (0) 20 229 5858</a>
-                                    </p>
-                                    <p class="text-xl font-bold text-primary mb-8">
-                                        Email: <a href="mailto:info@moegedp.com" class="hover:text-red-500 transition-colors">info@moegedp.com</a>
+                                <!-- Explore Deprived Districts (Right Side - Ash Background) -->
+                                <div class="deprived-districts-tool bg-ash px-8 py-12 md:p-16 lg:p-20">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4 uppercase">Explore Deprived Districts</h3>
+                                    <p class="text-gray-600 mb-8 font-medium">
+                                        Select a region to view the priority deprived districts list.
                                     </p>
 
-                                    <form class="space-y-4">
-                                        <input type="text" placeholder="Full Name"
-                                            class="w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium text-gray-800 rounded-sm">
-                                        <input type="email" placeholder="Email Address"
-                                            class="w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium text-gray-800 rounded-sm">
-                                        <textarea rows="4" placeholder="Your Message"
-                                            class="w-full bg-white border border-gray-300 px-6 py-5 focus:ring-2 focus:ring-primary outline-none transition-all placeholder-gray-500 font-medium resize-none text-gray-800 rounded-sm"></textarea>
-                                        <button type="submit"
-                                            class="w-full bg-primary hover:bg-black text-white py-4 font-bold shadow-lg transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center gap-2 uppercase tracking-wide">
-                                            <span>Send Message</span>
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    <div class="space-y-6">
+                                        <div class="relative">
+                                            <select class="region-select w-full bg-white border border-gray-300 px-6 py-4 focus:ring-2 focus:ring-primary outline-none transition-all text-primary font-bold appearance-none cursor-pointer">
+                                                <option value="" disabled selected>CHOOSE A REGION</option>
+                                                <!-- Options will be populated by JS -->
+                                            </select>
+                                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <div class="districts-display hidden">
+                                            <div class="mt-6">
+                                                <h4 class="selected-region-name text-lg font-bold text-primary uppercase tracking-wide mb-4">Region Name</h4>
+                                                <ul class="districts-list space-y-2 text-gray-700 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                                                    <!-- Districts populated by JS -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

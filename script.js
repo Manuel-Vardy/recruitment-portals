@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (targetElement) {
                 // Adjust for fixed navbar height
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const navbarElement = document.getElementById('navbar');
+                const navbarHeight = navbarElement ? navbarElement.offsetHeight : 80;
                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
 
                 window.scrollTo({
@@ -43,17 +44,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Navbar background change on scroll
-    const navbar = document.querySelector('.custom-navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            // Adding a class for scrolling instead of inline styles for cleaner code
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.style.boxShadow = 'none';
-            navbar.classList.remove('scrolled');
-        }
-    });
+    const navbarElement = document.getElementById('navbar');
+    if (navbarElement) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbarElement.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                navbarElement.classList.add('scrolled');
+            } else {
+                navbarElement.style.boxShadow = 'none';
+                navbarElement.classList.remove('scrolled');
+            }
+        });
+    }
 
     // Deprived Districts Logic
     const deprivedData = {
@@ -123,43 +125,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const regionSelect = document.getElementById('regionSelect');
-    const districtsDisplay = document.getElementById('districtsDisplay');
-    const districtsList = document.getElementById('districtsList');
-    const selectedRegionName = document.getElementById('selectedRegionName');
+    // Deprived Districts Logic - Support Multiple Instances
+    const toolContainers = document.querySelectorAll('.deprived-districts-tool');
 
-    if (regionSelect) {
-        // Populate select options
-        Object.keys(deprivedData).forEach(key => {
-            const option = document.createElement('option');
-            option.value = key;
-            option.textContent = deprivedData[key].display;
-            regionSelect.appendChild(option);
-        });
+    toolContainers.forEach(container => {
+        const regionSelect = container.querySelector('.region-select');
+        const districtsDisplay = container.querySelector('.districts-display');
+        const districtsList = container.querySelector('.districts-list');
+        const selectedRegionName = container.querySelector('.selected-region-name');
 
-        regionSelect.addEventListener('change', (e) => {
-            const regionKey = e.target.value;
-            const data = deprivedData[regionKey];
+        if (regionSelect && districtsDisplay && districtsList && selectedRegionName) {
+            // Populate select options
+            Object.keys(deprivedData).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = deprivedData[key].display;
+                regionSelect.appendChild(option);
+            });
 
-            if (data) {
-                // Update text
-                selectedRegionName.textContent = data.display + " Region Districts";
+            regionSelect.addEventListener('change', (e) => {
+                const regionKey = e.target.value;
+                const data = deprivedData[regionKey];
 
-                // Clear and populate list with simple layout
-                districtsList.innerHTML = data.districts.map((district, index) => `
-                    <li class="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0">
-                        <svg class="flex-shrink-0 w-4 h-4 text-green-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-700 font-medium">${district}</span>
-                    </li>
-                `).join('');
+                if (data) {
+                    // Update text
+                    selectedRegionName.textContent = data.display + " Region Districts";
 
-                // Show
-                districtsDisplay.classList.remove('hidden');
-                districtsDisplay.style.opacity = '1';
-                districtsDisplay.style.transform = 'none';
-            }
-        });
-    }
+                    // Clear and populate list with simple layout
+                    districtsList.innerHTML = data.districts.map((district) => `
+                        <li class="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0">
+                            <svg class="flex-shrink-0 w-4 h-4 text-green-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 font-medium">${district}</span>
+                        </li>
+                    `).join('');
+
+                    // Show
+                    districtsDisplay.classList.remove('hidden');
+                    districtsDisplay.style.opacity = '1';
+                    districtsDisplay.style.transform = 'none';
+                }
+            });
+        }
+    });
 });
