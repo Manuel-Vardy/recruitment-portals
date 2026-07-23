@@ -169,4 +169,51 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // How to Check Result Modal Logic
+    const openModalBtn = document.getElementById('open-result-modal-btn');
+    const closeModalBtn = document.getElementById('close-result-modal-btn');
+    const closeModalFooterBtn = document.getElementById('close-result-modal-footer-btn');
+    const modalBackdrop = document.getElementById('result-modal-backdrop');
+    const resultModal = document.getElementById('result-modal');
+    const modalContainer = document.getElementById('result-modal-container');
+
+    function openModal() {
+        if (resultModal && modalContainer) {
+            resultModal.classList.remove('opacity-0', 'pointer-events-none');
+            resultModal.classList.add('opacity-100', 'pointer-events-auto');
+            modalContainer.classList.remove('scale-95');
+            modalContainer.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal() {
+        if (resultModal && modalContainer) {
+            resultModal.classList.remove('opacity-100', 'pointer-events-auto');
+            resultModal.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (openModalBtn) {
+        openModalBtn.addEventListener('click', openModal);
+    }
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+    }
+    if (closeModalFooterBtn) {
+        closeModalFooterBtn.addEventListener('click', closeModal);
+    }
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', closeModal);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && resultModal && !resultModal.classList.contains('opacity-0')) {
+            closeModal();
+        }
+    });
 });
