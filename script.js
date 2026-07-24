@@ -205,15 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openModalBtn) {
         openModalBtn.addEventListener('click', openModal);
     }
-    if (navbarCheckResultBtn) {
-        navbarCheckResultBtn.addEventListener('click', openModal);
-    }
-    if (mobileCheckResultBtn) {
-        mobileCheckResultBtn.addEventListener('click', openModal);
-    }
-    if (heroMobileCheckResultBtn) {
-        heroMobileCheckResultBtn.addEventListener('click', openModal);
-    }
+    // Green 'Check Results' buttons intentionally do nothing on click
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
     }
