@@ -79,7 +79,21 @@ body {
     color: rgba(11, 19, 43, 0.92);
 }
 
+#navbar #navbar-check-result-btn {
+    background: #16a34a !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35) !important;
+    transition: background-color 0.3s ease !important;
+}
 
+#navbar #navbar-check-result-btn:hover {
+    background: #15803d !important;
+    color: #ffffff !important;
+}
 
 #navbar .hidden.lg\:flex a[href="https://excelliumgh.com/gedp"] {
     background: #ff9800 !important;

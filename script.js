@@ -198,8 +198,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const navbarCheckResultBtn = document.getElementById('navbar-check-result-btn');
+    const mobileCheckResultBtn = document.getElementById('mobile-check-result-btn');
+    const heroMobileCheckResultBtn = document.getElementById('hero-mobile-check-result-btn');
+
     if (openModalBtn) {
         openModalBtn.addEventListener('click', openModal);
+    }
+    if (navbarCheckResultBtn) {
+        navbarCheckResultBtn.addEventListener('click', openModal);
+    }
+    if (mobileCheckResultBtn) {
+        mobileCheckResultBtn.addEventListener('click', openModal);
+    }
+    if (heroMobileCheckResultBtn) {
+        heroMobileCheckResultBtn.addEventListener('click', openModal);
     }
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
