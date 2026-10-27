@@ -95,7 +95,7 @@ body {
     color: #ffffff !important;
 }
 
-#navbar .hidden.lg\:flex a[href="https://excelliumgh.com/gedp"] {
+#navbar .hidden.lg\:flex a[href="http://88.80.184.252:3001/"] {
     background: #ff9800 !important;
     color: #ffffff !important;
     border: 1.5px solid #ff9800 !important;
@@ -108,7 +108,7 @@ body {
     transition: background-color 0.3s ease, border-color 0.3s ease !important;
 }
 
-#navbar .hidden.lg\:flex a[href="https://excelliumgh.com/gedp"]:hover {
+#navbar .hidden.lg\:flex a[href="http://88.80.184.252:3001/"]:hover {
     background: #e68a00 !important;
     border-color: #e68a00 !important;
     color: #ffffff !important;
