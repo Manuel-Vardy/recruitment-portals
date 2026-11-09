@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     // Smooth scrolling for navigation links
     document.querySelectorAll('a.nav-link').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -126,99 +126,62 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Deprived Districts Logic - Support Multiple Instances
-    const toolContainers = document.querySelectorAll('.deprived-districts-tool');
+    function setupDeprivedDistricts() {
+        const toolContainers = document.querySelectorAll('.deprived-districts-tool');
 
-    toolContainers.forEach(container => {
-        const regionSelect = container.querySelector('.region-select');
-        const districtsDisplay = container.querySelector('.districts-display');
-        const districtsList = container.querySelector('.districts-list');
-        const selectedRegionName = container.querySelector('.selected-region-name');
+        toolContainers.forEach(container => {
+            const regionSelect = container.querySelector('.region-select');
+            const districtsDisplay = container.querySelector('.districts-display');
+            const districtsList = container.querySelector('.districts-list');
+            const selectedRegionName = container.querySelector('.selected-region-name');
 
-        if (regionSelect && districtsDisplay && districtsList && selectedRegionName) {
-            // Populate select options
-            Object.keys(deprivedData).forEach(key => {
-                const option = document.createElement('option');
-                option.value = key;
-                option.textContent = deprivedData[key].display;
-                regionSelect.appendChild(option);
-            });
-
-            regionSelect.addEventListener('change', (e) => {
-                const regionKey = e.target.value;
-                const data = deprivedData[regionKey];
-
-                if (data) {
-                    // Update text
-                    selectedRegionName.textContent = data.display + " Region Districts";
-
-                    // Clear and populate list with simple layout
-                    districtsList.innerHTML = data.districts.map((district) => `
-                        <li class="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0">
-                            <svg class="flex-shrink-0 w-4 h-4 text-green-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span class="text-gray-700 font-medium">${district}</span>
-                        </li>
-                    `).join('');
-
-                    // Show
-                    districtsDisplay.classList.remove('hidden');
-                    districtsDisplay.style.opacity = '1';
-                    districtsDisplay.style.transform = 'none';
+            if (regionSelect && districtsDisplay && districtsList && selectedRegionName) {
+                // Populate select options if not already populated
+                if (regionSelect.options.length <= 1) {
+                    Object.keys(deprivedData).forEach(key => {
+                        const option = document.createElement('option');
+                        option.value = key;
+                        option.textContent = deprivedData[key].display;
+                        regionSelect.appendChild(option);
+                    });
                 }
-            });
-        }
-    });
 
-    // How to Check Result Modal Logic
-    const openModalBtn = document.getElementById('open-result-modal-btn');
-    const closeModalBtn = document.getElementById('close-result-modal-btn');
-    const closeModalFooterBtn = document.getElementById('close-result-modal-footer-btn');
-    const modalBackdrop = document.getElementById('result-modal-backdrop');
-    const resultModal = document.getElementById('result-modal');
-    const modalContainer = document.getElementById('result-modal-container');
+                if (!regionSelect.dataset.initialized) {
+                    regionSelect.dataset.initialized = 'true';
+                    regionSelect.addEventListener('change', (e) => {
+                        const regionKey = e.target.value;
+                        const data = deprivedData[regionKey];
 
-    function openModal() {
-        if (resultModal && modalContainer) {
-            resultModal.classList.remove('opacity-0', 'pointer-events-none');
-            resultModal.classList.add('opacity-100', 'pointer-events-auto');
-            modalContainer.classList.remove('scale-95');
-            modalContainer.classList.add('scale-100');
-            document.body.style.overflow = 'hidden';
-        }
+                        if (data) {
+                            // Update text
+                            selectedRegionName.textContent = data.display + " Region Districts";
+
+                            // Clear and populate list with simple layout
+                            districtsList.innerHTML = data.districts.map((district) => `
+                                <li class="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0">
+                                    <svg class="flex-shrink-0 w-4 h-4 text-green-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 font-medium">${district}</span>
+                                </li>
+                            `).join('');
+
+                            // Show
+                            districtsDisplay.classList.remove('hidden');
+                            districtsDisplay.style.opacity = '1';
+                            districtsDisplay.style.transform = 'none';
+                        }
+                    });
+                }
+            }
+        });
     }
 
-    function closeModal() {
-        if (resultModal && modalContainer) {
-            resultModal.classList.remove('opacity-100', 'pointer-events-auto');
-            resultModal.classList.add('opacity-0', 'pointer-events-none');
-            modalContainer.classList.remove('scale-100');
-            modalContainer.classList.add('scale-95');
-            document.body.style.overflow = '';
-        }
-    }
+    setupDeprivedDistricts();
+}
 
-    const navbarCheckResultBtn = document.getElementById('navbar-check-result-btn');
-    const mobileCheckResultBtn = document.getElementById('mobile-check-result-btn');
-    const heroMobileCheckResultBtn = document.getElementById('hero-mobile-check-result-btn');
-
-    if (openModalBtn) {
-        openModalBtn.addEventListener('click', openModal);
-    }
-    // Green 'Check Results' buttons intentionally do nothing on click
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeModal);
-    }
-    if (closeModalFooterBtn) {
-        closeModalFooterBtn.addEventListener('click', closeModal);
-    }
-    if (modalBackdrop) {
-        modalBackdrop.addEventListener('click', closeModal);
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && resultModal && !resultModal.classList.contains('opacity-0')) {
-            closeModal();
-        }
-    });
-});
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
