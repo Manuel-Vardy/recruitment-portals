@@ -79,23 +79,24 @@ body {
     color: rgba(11, 19, 43, 0.92);
 }
 
-#navbar .hidden.lg\:flex a[href="http://88.80.184.252:3001/"] {
-    background: #ff9800 !important;
+#navbar a[href*="3001"] {
+    background: #16a34a !important;
     color: #ffffff !important;
-    border: 1.5px solid #ff9800 !important;
-    border-radius: 6px !important;
+    border: 1.5px solid #16a34a !important;
+    border-radius: 9999px !important;
     box-shadow: none !important;
-    padding: 10px 16px !important;
-    font-size: 14px !important;
+    padding: 10px 24px !important;
+    font-size: 15px !important;
     line-height: 1.1 !important;
     transform: none !important;
     transition: background-color 0.3s ease, border-color 0.3s ease !important;
 }
 
-#navbar .hidden.lg\:flex a[href="http://88.80.184.252:3001/"]:hover {
-    background: #e68a00 !important;
-    border-color: #e68a00 !important;
+#navbar a[href*="3001"]:hover {
+    background: #15803d !important;
+    border-color: #15803d !important;
     color: #ffffff !important;
+    box-shadow: none !important;
     transform: none !important;
 }
 
@@ -111,7 +112,7 @@ body {
 
 header#home {
     min-height: 86vh;
-    background-image: url('image/group-african-kids-paying-attention-class.jpg');
+    background-image: url('image/woman-writing-white-wall.jpg');
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
@@ -175,7 +176,7 @@ section.bg-white.border-b {
 }
 
 .applicant-section img {
-    border-radius: calc(var(--radius) + 6px) !important;
+    border-radius: 0 !important;
 }
 
 .applicant-section h2,
@@ -268,6 +269,9 @@ footer {
 }
 
 .nav-tab-link {
-    will-change: transform;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.phase-label {
+    color: #dc2626 !important;
 }
