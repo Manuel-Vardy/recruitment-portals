@@ -69,14 +69,16 @@ body {
 }
 
 #navbar {
-    background: #ffffff !important;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.10);
-    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.10);
+    background: rgba(15, 15, 15, 0.3) !important;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.15);
 }
 
 #navbar a,
 #navbar button {
-    color: rgba(11, 19, 43, 0.92);
+    color: rgba(255, 255, 255, 0.92);
 }
 
 #navbar a[href*="3001"] {
@@ -111,7 +113,7 @@ body {
 }
 
 header#home {
-    min-height: 86vh;
+    min-height: 94vh;
     background-image: url('image/woman-writing-white-wall.jpg');
     background-size: cover;
     background-position: top center;
